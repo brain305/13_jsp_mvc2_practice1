@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -79,6 +81,59 @@ public class BoardDAO {
 		
 		
 	}
+	
+	
+	/*
+	 * param : null
+	 * return : ArrayList
+	 * */
+	// bList에 db갖고 오기
+	public ArrayList<BoardDTO> getBoardList(){
+		
+		//ArrayList<HashMap<String, Object>> a;
+		ArrayList<BoardDTO> boardList = new ArrayList<BoardDTO>();
+		
+		try {
+			
+			getConnection();
+			
+			String sql = """
+						SELECT *
+						FROM BOARD
+					""";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				BoardDTO boardDTO = new BoardDTO();
+				
+				boardDTO.setBoardId(rs.getLong("BOARD_ID"));
+				boardDTO.setWriter(rs.getString("WRITER"));
+				boardDTO.setSubject(rs.getString("SUBJECT"));
+				boardDTO.setEnrollDt(rs.getDate("ENROLL_DT"));
+				boardDTO.setReadCnt(rs.getLong("READ_CNT"));
+				
+				// 갖고 온 값들을 boardList에 추가
+				boardList.add(boardDTO);
+				
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			getClose();
+		}
+		
+		return boardList;
+		
+	}
+	
+	
+	
 	
 	
 	

@@ -1,6 +1,7 @@
 package board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +40,24 @@ public class WriteServlet extends HttpServlet {
 		BoardDAO.getInstance().insertBoard(boardDTO);
 		
 		// 다음 페이지로 넘어가는 부분 만들기
+		
+		// alert 기능이 없어도 되면 단순이동은 sendRedirect("bList");로도 가능
+		// spring 에서는 redirect:/bList
+		response.sendRedirect("bList");
+		
+		// 원래 버전
+	/*
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		String jsScript = """
+					<script>
+						alert("등록되었습니다.");
+						location.href='bList';
+					</script>
+				""";
+		
+		pw.print(jsScript);
+	*/
 		
 		
 	}

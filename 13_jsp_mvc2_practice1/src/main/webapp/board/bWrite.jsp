@@ -39,7 +39,7 @@
 				<tr align="center">
 					<td colspan="2">
 						<input type="submit" value="글쓰기" />
-						<input type="button" value="목록보기">
+						<input type="button" value="목록보기" onclick="location.href='bList'">
 					</td>
 				</tr>
 			</table>
