@@ -13,7 +13,7 @@ import board.DAO.BoardDAO;
 import board.DTO.BoardDTO;
 
 @WebServlet("/bWrite")
-public class writesuvlet extends HttpServlet {
+public class WriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
 	
