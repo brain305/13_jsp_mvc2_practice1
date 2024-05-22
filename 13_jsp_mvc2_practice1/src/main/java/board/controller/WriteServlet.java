@@ -1,4 +1,4 @@
-package board.controller;
+ package board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

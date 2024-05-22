@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.DAO.BoardDAO;
+import board.DTO.BoardDTO;
 
 @WebServlet("/bList")
 public class ListServlet extends HttpServlet {
@@ -20,7 +21,9 @@ public class ListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// db에서 갖고 오기
+		ArrayList<BoardDTO> boardList = BoardDAO.getInstance().getBoardList();
 		request.setAttribute("boardList", BoardDAO.getInstance().getBoardList());
+		
 		
 		RequestDispatcher dis = request.getRequestDispatcher("board/bList.jsp");
 		dis.forward(request, response);
